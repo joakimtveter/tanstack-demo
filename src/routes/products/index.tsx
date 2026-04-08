@@ -1,3 +1,4 @@
+import { useProductsQueryOptions } from "#/api/products.api";
 import { useProducts } from "#/api/useApi";
 import Pagination from "#/components/pagination";
 import ProductList from "#/components/product-list";
@@ -12,6 +13,14 @@ const productSearchSchema = z.object({
 export const Route = createFileRoute("/products/")({
   component: RouteComponent,
   validateSearch: productSearchSchema,
+  loaderDeps: ({ search: { page, pageSize } }) => ({ page, pageSize }),
+  loader: ({ context: { queryClient }, deps: { page, pageSize } }) =>
+    queryClient.ensureQueryData(
+      useProductsQueryOptions({
+        limit: pageSize,
+        skip: (page - 1) * pageSize,
+      }),
+    ),
 });
 
 function RouteComponent() {
