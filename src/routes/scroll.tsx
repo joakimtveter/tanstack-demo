@@ -5,6 +5,9 @@ import { useInfiniteScroll } from "#/hooks/useInfiniteScroll";
 
 export const Route = createFileRoute("/scroll")({
   component: RouteComponent,
+  head: () => ({
+    meta: [{ title: "Scroll infinite query example | Tanstack Query Demo" }],
+  }),
 });
 
 function RouteComponent() {

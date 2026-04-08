@@ -6,6 +6,9 @@ import { Spinner } from "#/components/ui/spinner";
 
 export const Route = createFileRoute("/load-more")({
   component: RouteComponent,
+  head: () => ({
+    meta: [{ title: "Manual infinite query example | Tanstack Query Demo" }],
+  }),
 });
 
 function RouteComponent() {

@@ -8,6 +8,9 @@ import { z } from "zod";
 
 export const Route = createFileRoute("/products/add")({
   component: RouteComponent,
+  head: () => ({
+    meta: [{ title: "Add Product mutation example | Tanstack Query Demo" }],
+  }),
 });
 
 const addProductSchema = z.object({

@@ -1,3 +1,4 @@
+import { useProductByIdQueryOptions } from "#/api/products.api";
 import { useProductById } from "#/api/useApi";
 import { formatCurrency } from "#/utils/currency.utils";
 import { createFileRoute, Link } from "@tanstack/react-router";
@@ -25,6 +26,13 @@ import {
 
 export const Route = createFileRoute("/products/$productId")({
   component: RouteComponent,
+  loader: ({ context: { queryClient }, params: { productId } }) =>
+    queryClient.ensureQueryData(
+      useProductByIdQueryOptions(Number(productId)),
+    ),
+  head: ({ loaderData }) => ({
+    meta: [{ title: `${loaderData?.title ?? "Product Details"} | Tanstack Query Demo` }],
+  }),
 });
 
 function RouteComponent() {

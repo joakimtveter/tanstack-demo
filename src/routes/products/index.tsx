@@ -13,6 +13,9 @@ const productSearchSchema = z.object({
 export const Route = createFileRoute("/products/")({
   component: RouteComponent,
   validateSearch: productSearchSchema,
+  head: () => ({
+    meta: [{ title: "Paginated query example | Tanstack Query Demo" }],
+  }),
   loaderDeps: ({ search: { page, pageSize } }) => ({ page, pageSize }),
   loader: ({ context: { queryClient }, deps: { page, pageSize } }) =>
     queryClient.ensureQueryData(

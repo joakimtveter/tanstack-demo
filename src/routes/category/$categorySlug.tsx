@@ -4,6 +4,9 @@ import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/category/$categorySlug")({
   component: RouteComponent,
+  head: ({ params: { categorySlug } }) => ({
+    meta: [{ title: `${categorySlug} category | Tanstack Query Demo` }],
+  }),
 });
 
 function RouteComponent() {
