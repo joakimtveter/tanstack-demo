@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+
 import { useInfinateProducts } from "#/api/useApi";
 import ProductList from "#/components/product-list";
 import { useInfiniteScroll } from "#/hooks/useInfiniteScroll";
@@ -26,8 +27,8 @@ function RouteComponent() {
   const products = data?.pages.flatMap((page) => page.products);
 
   return (
-    <main className="page-wrap px-4 pb-8 pt-14">
-      <h1 className="text-4xl font-bold mb-6">Infinate scroll page</h1>
+    <main className="page-wrap px-4 pt-14 pb-8">
+      <h1 className="mb-6 text-4xl font-bold">Infinate scroll page</h1>
 
       <ProductList products={products} />
 
@@ -37,7 +38,7 @@ function RouteComponent() {
         )}
       </div>
 
-      {!hasNextPage && <p className="text-center text-gray-500 py-4">No more products</p>}
+      {!hasNextPage && <p className="py-4 text-center text-gray-500">No more products</p>}
     </main>
   );
 }

@@ -1,8 +1,9 @@
+import { Link } from "@tanstack/react-router";
+
+import { Button } from "#/components/ui/button";
+import { Card, CardFooter, CardHeader, CardTitle, CardDescription } from "#/components/ui/card";
 import type { Product } from "#/types/product.types";
 import { formatCurrency } from "#/utils/currency.utils";
-import { Link } from "@tanstack/react-router";
-import { Card, CardFooter, CardHeader, CardTitle, CardDescription } from "#/components/ui/card";
-import { Button } from "#/components/ui/button";
 
 type ProductListProps = {
   products: Product[];
@@ -11,13 +12,7 @@ type ProductListProps = {
 export default function ProductList(props: ProductListProps) {
   const { products } = props;
   return (
-    <ul
-      className="
-        grid
-        gap-6
-        grid-cols-[repeat(auto-fit,minmax(250px,1fr))]
-      "
-    >
+    <ul className="grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-6">
       {products.map((product) => (
         <ProductCard key={product.id} product={product} />
       ))}
@@ -35,7 +30,7 @@ function ProductCard(props: ProductCardProps) {
     <li className="list-none">
       <Card className="relative">
         <img
-          className="w-full h-48 object-contain"
+          className="h-48 w-full object-contain"
           src={product.thumbnail}
           alt={`${product.title} product image`}
         />
@@ -45,7 +40,7 @@ function ProductCard(props: ProductCardProps) {
             <Link
               to="/products/$productId"
               params={{ productId: product.id.toString() }}
-              className="hover:underline after:absolute after:inset-0"
+              className="after:absolute after:inset-0 hover:underline"
             >
               {product.title}
             </Link>

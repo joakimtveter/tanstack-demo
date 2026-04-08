@@ -1,11 +1,4 @@
-import { useProductByIdQueryOptions } from "#/api/products.api";
-import { useProductById } from "#/api/useApi";
-import { formatCurrency } from "#/utils/currency.utils";
-import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Card, CardContent, CardHeader, CardTitle } from "#/components/ui/card";
-import { Button } from "#/components/ui/button";
-import { Separator } from "#/components/ui/separator";
 import {
   BoxIcon,
   PackageIcon,
@@ -17,13 +10,25 @@ import {
   UndoIcon,
   WeightIcon,
 } from "lucide-react";
+import { useState } from "react";
+
+import { useProductByIdQueryOptions } from "#/api/products.api";
+import { useProductById } from "#/api/useApi";
+import { Button } from "#/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "#/components/ui/card";
+import { Separator } from "#/components/ui/separator";
+import { formatCurrency } from "#/utils/currency.utils";
 
 export const Route = createFileRoute("/products/$productId")({
   component: RouteComponent,
   loader: ({ context: { queryClient }, params: { productId } }) =>
     queryClient.ensureQueryData(useProductByIdQueryOptions(Number(productId))),
   head: ({ loaderData }) => ({
-    meta: [{ title: `${loaderData?.title ?? "Product Details"} | Tanstack Query Demo` }],
+    meta: [
+      {
+        title: `${loaderData?.title ?? "Product Details"} | Tanstack Query Demo`,
+      },
+    ],
   }),
 });
 
@@ -39,10 +44,10 @@ function RouteComponent() {
   const mainImage = selectedImage ?? product.thumbnail;
 
   return (
-    <main className="page-wrap px-4 pb-8 pt-14">
-      <div className="max-w-5xl mx-auto space-y-8">
+    <main className="page-wrap px-4 pt-14 pb-8">
+      <div className="mx-auto max-w-5xl space-y-8">
         {/* Hero section */}
-        <div className="flex flex-col md:flex-row gap-8">
+        <div className="flex flex-col gap-8 md:flex-row">
           <div className="md:w-1/2">
             <img
               src={mainImage}
@@ -56,15 +61,15 @@ function RouteComponent() {
               <Link
                 to="/category/$categorySlug"
                 params={{ categorySlug: product.category }}
-                className="text-sm text-muted-foreground hover:underline uppercase tracking-wide"
+                className="text-muted-foreground text-sm tracking-wide uppercase hover:underline"
               >
                 {product.category}
               </Link>
               <h1 className="text-2xl font-bold">{product.title}</h1>
-              <div className="flex items-center gap-1 mt-1">
+              <div className="mt-1 flex items-center gap-1">
                 <StarIcon className="size-4 fill-yellow-400 text-yellow-400" />
                 <span className="text-sm font-medium">{product.rating}/5</span>
-                <span className="text-sm text-muted-foreground">
+                <span className="text-muted-foreground text-sm">
                   ({product.reviews.length} reviews)
                 </span>
               </div>
@@ -76,7 +81,7 @@ function RouteComponent() {
               <span className="text-3xl font-bold">{formatCurrency(product.price)}</span>
             </div>
 
-            <p className="text-sm text-muted-foreground">{product.stock} in stock</p>
+            <p className="text-muted-foreground text-sm">{product.stock} in stock</p>
 
             <Button size="lg" className="w-full">
               Add to Cart
@@ -86,20 +91,20 @@ function RouteComponent() {
 
         {/* Gallery */}
         {product.images.length > 1 && (
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
             {product.images.map((img, i) => (
               <button
                 key={i}
                 type="button"
                 onClick={() => setSelectedImage(img)}
-                className={`rounded-4xl shadow-md overflow-hidden cursor-pointer ring-2 transition-all ${
-                  mainImage === img ? "ring-primary" : "ring-transparent hover:ring-primary/50"
+                className={`cursor-pointer overflow-hidden rounded-4xl shadow-md ring-2 transition-all ${
+                  mainImage === img ? "ring-primary" : "hover:ring-primary/50 ring-transparent"
                 }`}
               >
                 <img
                   src={img}
                   alt={`${product.title} ${i + 1}`}
-                  className="object-cover aspect-square w-full"
+                  className="aspect-square w-full object-cover"
                 />
               </button>
             ))}
@@ -107,7 +112,7 @@ function RouteComponent() {
         )}
 
         {/* Details + Reviews side by side on larger screens */}
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid gap-8 md:grid-cols-2">
           {/* Details */}
           <Card>
             <CardHeader>
@@ -166,7 +171,7 @@ function RouteComponent() {
                       </div>
                     </div>
                     <p className="text-muted-foreground">{review.comment}</p>
-                    <p className="text-xs text-muted-foreground">
+                    <p className="text-muted-foreground text-xs">
                       {new Date(review.date).toLocaleDateString()}
                     </p>
                   </div>
@@ -192,7 +197,7 @@ function DetailRow({
   return (
     <div className="flex items-center gap-3">
       <span className="text-muted-foreground [&_svg]:size-4">{icon}</span>
-      <dt className="text-sm text-muted-foreground w-24 shrink-0">{label}</dt>
+      <dt className="text-muted-foreground w-24 shrink-0 text-sm">{label}</dt>
       <dd className="text-sm font-medium">{value}</dd>
     </div>
   );

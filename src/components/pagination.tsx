@@ -1,11 +1,12 @@
 import { Link } from "@tanstack/react-router";
+import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
+
+import { Button } from "#/components/ui/button";
 import {
   Pagination as PaginationRoot,
   PaginationContent,
   PaginationItem,
 } from "#/components/ui/pagination";
-import { Button } from "#/components/ui/button";
-import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 
 type PaginationProps = {
   total: number;
