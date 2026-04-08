@@ -2070,6 +2070,18 @@
         <option name="homepage" value="https://flowkit-ui.vzkiss.com" />
         <option name="urlTemplate" value="https://flowkit-ui.vzkiss.com/r/{name}.json" />
       </RegistryConfigState>
+      <RegistryConfigState>
+        <option name="id" value="central-termcn" />
+        <option name="name" value="Termcn" />
+        <option name="namespace" value="@termcn" />
+        <option name="baseUrl" value="https://termcn.vercel.app/r" />
+        <option name="stylePath" value="/{name}.json" />
+        <option name="type" value="community" />
+        <option name="enabled" value="false" />
+        <option name="description" value="Beautiful terminal UIs, made simple. Ready to use, customizable terminal UI components for React." />
+        <option name="homepage" value="https://termcn.vercel.app" />
+        <option name="urlTemplate" value="https://termcn.vercel.app/r/{name}.json" />
+      </RegistryConfigState>
     </registryConfigs>
   </component>
 </project>

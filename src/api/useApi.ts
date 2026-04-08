@@ -26,7 +26,7 @@ export function useProductById(id: number) {
 
 export function useAddProduct() {
   return useMutation({
-    mutationFn: () => addProduct(),
+    mutationFn: (title: string) => addProduct(title),
     onError: (error) => console.error(error),
     onSuccess: (data) => console.log(data),
   });
