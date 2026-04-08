@@ -1,5 +1,6 @@
-import type { ProductsResponse } from "#/types/product.types";
 import { queryOptions } from "@tanstack/react-query";
+
+import type { ProductsResponse } from "#/types/product.types";
 
 export function useProductsByCategoryQueryOptions(category: string) {
   return queryOptions({

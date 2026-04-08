@@ -1,8 +1,9 @@
+import { queryOptions, infiniteQueryOptions } from "@tanstack/react-query";
+
 import { ALL_PRODUCTS, SINGLE_PRODUCT } from "#/constants/query-keys.constants";
 import type { AddProductInput } from "#/schemas/product.schema";
 import type { Pagination } from "#/types/api.types";
 import type { Product, ProductsResponse } from "#/types/product.types";
-import { queryOptions, infiniteQueryOptions } from "@tanstack/react-query";
 
 export function useProductByIdQueryOptions(id: number) {
   return queryOptions({

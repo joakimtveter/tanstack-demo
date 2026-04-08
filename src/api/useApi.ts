@@ -1,5 +1,5 @@
 import { useInfiniteQuery, useMutation, useQuery } from "@tanstack/react-query";
-import type { AddProductInput } from "#/schemas/product.schema";
+
 import { useProductsByCategoryQueryOptions } from "#/api/category.api";
 import {
   addProduct,
@@ -7,6 +7,7 @@ import {
   useProductByIdQueryOptions,
   useProductsQueryOptions,
 } from "#/api/products.api";
+import type { AddProductInput } from "#/schemas/product.schema";
 import type { Pagination } from "#/types/api.types";
 
 export function useProducts(pagination?: Pagination) {

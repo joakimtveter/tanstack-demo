@@ -1,11 +1,12 @@
+import { useForm } from "@tanstack/react-form";
+import { createFileRoute } from "@tanstack/react-router";
+
 import { useAddProduct } from "#/api/useApi";
 import { Button } from "#/components/ui/button";
 import { Field, FieldError, FieldLabel } from "#/components/ui/field";
 import { Input } from "#/components/ui/input";
 import { Textarea } from "#/components/ui/textarea";
-import { useForm } from "@tanstack/react-form";
 import { addProductSchema } from "#/schemas/product.schema";
-import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/products/add")({
   component: RouteComponent,
@@ -33,15 +34,15 @@ function RouteComponent() {
   });
 
   return (
-    <main className="page-wrap px-4 pb-8 pt-14">
-      <h1 className="text-4xl font-bold mb-6">Add product</h1>
+    <main className="page-wrap px-4 pt-14 pb-8">
+      <h1 className="mb-6 text-4xl font-bold">Add product</h1>
 
       <form
         onSubmit={(e) => {
           e.preventDefault();
           form.handleSubmit();
         }}
-        className="flex flex-col gap-4 max-w-md"
+        className="flex max-w-md flex-col gap-4"
       >
         <form.Field name="title">
           {(field) => (
@@ -84,7 +85,7 @@ function RouteComponent() {
             <Field>
               <FieldLabel htmlFor={field.name}>Price</FieldLabel>
               <div className="relative">
-                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground">
+                <span className="text-muted-foreground absolute top-1/2 left-3 -translate-y-1/2">
                   $
                 </span>
                 <Input

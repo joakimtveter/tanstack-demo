@@ -1,11 +1,12 @@
-import { HeadContent, Scripts, createRootRouteWithContext } from "@tanstack/react-router";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
-import { ReactQueryDevtoolsPanel } from "@tanstack/react-query-devtools";
 import { TanStackDevtools } from "@tanstack/react-devtools";
-import { queryClient } from "#/router";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtoolsPanel } from "@tanstack/react-query-devtools";
+import { HeadContent, Scripts, createRootRouteWithContext } from "@tanstack/react-router";
+import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
+
 import Footer from "#/components/footer";
 import Header from "#/components/header";
+import { queryClient } from "#/router";
 
 import appCss from "../styles.css?url";
 
@@ -42,7 +43,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
         <HeadContent />
       </head>
-      <body className="font-sans antialiased [overflow-wrap:anywhere] selection:bg-[rgba(79,184,178,0.24)]">
+      <body className="font-sans wrap-anywhere antialiased selection:bg-[rgba(79,184,178,0.24)]">
         <QueryClientProvider client={queryClient}>
           <Header />
           {children}

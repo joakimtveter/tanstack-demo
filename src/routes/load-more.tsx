@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+
 import { useInfinateProducts } from "#/api/useApi";
 import ProductList from "#/components/product-list";
 import { Button } from "#/components/ui/button";
@@ -21,10 +22,10 @@ function RouteComponent() {
   const products = data?.pages.flatMap((page) => page.products);
 
   return (
-    <main className="page-wrap px-4 pb-8 pt-14">
-      <h1 className="text-4xl font-bold mb-6">Load more Store page</h1>
+    <main className="page-wrap px-4 pt-14 pb-8">
+      <h1 className="mb-6 text-4xl font-bold">Load more Store page</h1>
       <ProductList products={products} />
-      <div className="flex justify-center my-4">
+      <div className="my-4 flex justify-center">
         <Button
           size="lg"
           onClick={() => fetchNextPage()}
