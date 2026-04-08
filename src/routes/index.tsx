@@ -10,7 +10,7 @@ export const Route = createFileRoute("/")({
 });
 
 function App() {
-  const { data } = useProducts({limit: 200, skip:0});
+  const { data } = useProducts({ limit: 200, skip: 0 });
 
   return (
     <main className="page-wrap px-4 pb-8 pt-14">

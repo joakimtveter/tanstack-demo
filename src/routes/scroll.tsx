@@ -11,14 +11,8 @@ export const Route = createFileRoute("/scroll")({
 });
 
 function RouteComponent() {
-  const {
-    data,
-    error,
-    fetchNextPage,
-    hasNextPage,
-    isFetchingNextPage,
-    status,
-  } = useInfinateProducts();
+  const { data, error, fetchNextPage, hasNextPage, isFetchingNextPage, status } =
+    useInfinateProducts();
 
   const loadMoreRef = useInfiniteScroll({
     hasNextPage,
@@ -43,9 +37,7 @@ function RouteComponent() {
         )}
       </div>
 
-      {!hasNextPage && (
-        <p className="text-center text-gray-500 py-4">No more products</p>
-      )}
+      {!hasNextPage && <p className="text-center text-gray-500 py-4">No more products</p>}
     </main>
   );
 }

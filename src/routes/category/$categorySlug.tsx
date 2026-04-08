@@ -15,9 +15,7 @@ function RouteComponent() {
 
   return (
     <main className="page-wrap px-4 pb-8 pt-14">
-      <h1 className="text-4xl font-bold mb-6">
-        Category: {categorySlug}
-      </h1>
+      <h1 className="text-4xl font-bold mb-6">Category: {categorySlug}</h1>
       <ProductList products={data?.products ?? []} />
     </main>
   );

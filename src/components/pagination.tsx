@@ -26,9 +26,7 @@ export default function Pagination(props: PaginationProps) {
             size="default"
             className="pl-2!"
             disabled={currentPage <= 1}
-            render={
-              <Link to="." search={{ page: currentPage - 1, pageSize: limit }} />
-            }
+            render={<Link to="." search={{ page: currentPage - 1, pageSize: limit }} />}
           >
             <ChevronLeftIcon data-icon="inline-start" />
             <span className="hidden sm:block">Previous</span>
@@ -44,9 +42,7 @@ export default function Pagination(props: PaginationProps) {
                 variant={isActive ? "outline" : "ghost"}
                 size="icon"
                 aria-label={`Page ${page}`}
-                render={
-                  <Link to="." search={{ page, pageSize: limit }} />
-                }
+                render={<Link to="." search={{ page, pageSize: limit }} />}
               >
                 {page}
               </Button>
@@ -60,9 +56,7 @@ export default function Pagination(props: PaginationProps) {
             size="default"
             className="pr-2!"
             disabled={currentPage >= numberOfPages}
-            render={
-              <Link to="." search={{ page: currentPage + 1, pageSize: limit }} />
-            }
+            render={<Link to="." search={{ page: currentPage + 1, pageSize: limit }} />}
           >
             <span className="hidden sm:block">Next</span>
             <ChevronRightIcon data-icon="inline-end" />

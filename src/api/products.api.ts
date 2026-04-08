@@ -1,4 +1,5 @@
 import { ALL_PRODUCTS, SINGLE_PRODUCT } from "#/constants/query-keys.constants";
+import type { AddProductInput } from "#/schemas/product.schema";
 import type { Pagination } from "#/types/api.types";
 import type { Product, ProductsResponse } from "#/types/product.types";
 import { queryOptions, infiniteQueryOptions } from "@tanstack/react-query";
@@ -60,13 +61,12 @@ async function getProducts(pagination?: Pagination): Promise<ProductsResponse> {
   return await response.json();
 }
 
-export async function addProduct(title: string) {
+export async function addProduct(data: AddProductInput) {
   const response = await fetch("https://dummyjson.com/products/add", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ title }),
+    body: JSON.stringify(data),
   });
-  console.warn(response);
   if (!response.ok) throw new Error("Failed to create product");
   return await response.json();
 }

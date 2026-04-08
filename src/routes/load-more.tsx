@@ -12,15 +12,8 @@ export const Route = createFileRoute("/load-more")({
 });
 
 function RouteComponent() {
-  const {
-    data,
-    error,
-    fetchNextPage,
-    hasNextPage,
-    isFetching,
-    isFetchingNextPage,
-    status,
-  } = useInfinateProducts();
+  const { data, error, fetchNextPage, hasNextPage, isFetching, isFetchingNextPage, status } =
+    useInfinateProducts();
 
   if (status === "pending") return <div>Loading ...</div>;
   if (status === "error") return <div>{JSON.stringify(error)}</div>;

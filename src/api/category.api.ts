@@ -8,12 +8,8 @@ export function useProductsByCategoryQueryOptions(category: string) {
   });
 }
 
-async function getProductsByCategory(
-  category: string,
-): Promise<ProductsResponse> {
-  const response = await fetch(
-    `https://dummyjson.com/products/category/${category}`,
-  );
+async function getProductsByCategory(category: string): Promise<ProductsResponse> {
+  const response = await fetch(`https://dummyjson.com/products/category/${category}`);
   if (!response.ok) throw Error("Failed to fetch");
   return await response.json();
 }

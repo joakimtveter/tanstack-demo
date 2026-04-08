@@ -1,4 +1,5 @@
 import { useInfiniteQuery, useMutation, useQuery } from "@tanstack/react-query";
+import type { AddProductInput } from "#/schemas/product.schema";
 import { useProductsByCategoryQueryOptions } from "#/api/category.api";
 import {
   addProduct,
@@ -26,8 +27,7 @@ export function useProductById(id: number) {
 
 export function useAddProduct() {
   return useMutation({
-    mutationFn: (title: string) => addProduct(title),
-    onError: (error) => console.error(error),
+    mutationFn: (data: AddProductInput) => addProduct(data),
     onSuccess: (data) => console.log(data),
   });
 }

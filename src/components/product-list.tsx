@@ -1,13 +1,7 @@
 import type { Product } from "#/types/product.types";
 import { formatCurrency } from "#/utils/currency.utils";
 import { Link } from "@tanstack/react-router";
-import {
-  Card,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-} from "#/components/ui/card";
+import { Card, CardFooter, CardHeader, CardTitle, CardDescription } from "#/components/ui/card";
 import { Button } from "#/components/ui/button";
 
 type ProductListProps = {
@@ -17,17 +11,17 @@ type ProductListProps = {
 export default function ProductList(props: ProductListProps) {
   const { products } = props;
   return (
-      <ul
-          className="
+    <ul
+      className="
         grid
         gap-6
         grid-cols-[repeat(auto-fit,minmax(250px,1fr))]
       "
-      >
-        {products.map((product) => (
-            <ProductCard key={product.id} product={product} />
-        ))}
-      </ul>
+    >
+      {products.map((product) => (
+        <ProductCard key={product.id} product={product} />
+      ))}
+    </ul>
   );
 }
 
@@ -39,11 +33,11 @@ function ProductCard(props: ProductCardProps) {
   const { product } = props;
   return (
     <li className="list-none">
-      <Card>
+      <Card className="relative">
         <img
-          className="w-full h-48 object-cover"
-          src={product.images[0]}
-          alt="Product Image"
+          className="w-full h-48 object-contain"
+          src={product.thumbnail}
+          alt={`${product.title} product image`}
         />
 
         <CardHeader>
@@ -51,7 +45,7 @@ function ProductCard(props: ProductCardProps) {
             <Link
               to="/products/$productId"
               params={{ productId: product.id.toString() }}
-              className="hover:underline"
+              className="hover:underline after:absolute after:inset-0"
             >
               {product.title}
             </Link>
@@ -60,7 +54,7 @@ function ProductCard(props: ProductCardProps) {
             <Link
               to="/category/$categorySlug"
               params={{ categorySlug: product.category }}
-              className="hover:underline"
+              className="relative z-10 hover:underline"
             >
               {product.category}
             </Link>
@@ -68,10 +62,10 @@ function ProductCard(props: ProductCardProps) {
         </CardHeader>
 
         <CardFooter className="justify-between">
-          <span className="text-xl font-bold">
-            {formatCurrency(product.price)}
-          </span>
-          <Button size="sm">Add to Cart</Button>
+          <span className="text-xl font-bold">{formatCurrency(product.price)}</span>
+          <Button size="sm" className="relative z-10">
+            Add to Cart
+          </Button>
         </CardFooter>
       </Card>
     </li>

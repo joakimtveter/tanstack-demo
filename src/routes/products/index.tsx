@@ -37,11 +37,7 @@ function RouteComponent() {
     <main className="page-wrap px-4 pb-8 pt-14">
       <h1 className="text-4xl font-bold mb-6">Paginated Store page</h1>
       <ProductList products={data?.products ?? []} />
-      <Pagination
-        currentPage={page}
-        total={data?.total ?? 1}
-        limit={pageSize}
-      />
+      <Pagination currentPage={page} total={data?.total ?? 1} limit={pageSize} />
     </main>
   );
 }
