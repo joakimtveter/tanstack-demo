@@ -10,7 +10,7 @@ function RouteComponent() {
 
   return (
     <main className="page-wrap px-4 pb-8 pt-14">
-      <h1 className="text-4xl font-bold text-gray-800">Add product</h1>
+      <h1 className="text-4xl font-bold mb-6">Add product</h1>
 
       <button onClick={() => mutate()}>Create Product</button>
     </main>

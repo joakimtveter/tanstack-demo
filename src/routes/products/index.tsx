@@ -23,7 +23,7 @@ function RouteComponent() {
 
   return (
     <main className="page-wrap px-4 pb-8 pt-14">
-      <h1 className="text-4xl font-bold text-gray-800">Paginated Store page</h1>
+      <h1 className="text-4xl font-bold mb-6">Paginated Store page</h1>
       <ProductList products={data?.products ?? []} />
       <Pagination
         currentPage={page}
