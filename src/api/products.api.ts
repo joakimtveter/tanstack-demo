@@ -1,6 +1,10 @@
 import { queryOptions, infiniteQueryOptions } from "@tanstack/react-query";
 
-import { ALL_PRODUCTS, SINGLE_PRODUCT } from "#/constants/query-keys.constants";
+import {
+  ALL_PRODUCTS,
+  INFINITE_PRODUCTS,
+  SINGLE_PRODUCT,
+} from "#/constants/query-keys.constants";
 import type { AddProductInput } from "#/schemas/product.schema";
 import type { Pagination } from "#/types/api.types";
 import type { Product, ProductsResponse } from "#/types/product.types";
@@ -27,7 +31,7 @@ export function useProductsQueryOptions(pagination?: Pagination) {
 
 export function useInfiniteProductsQueryOption() {
   return infiniteQueryOptions({
-    queryKey: ["infinite-products"],
+    queryKey: [INFINITE_PRODUCTS],
 
     queryFn: ({ pageParam }) =>
       getProducts({
