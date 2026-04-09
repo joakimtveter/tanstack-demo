@@ -1,7 +1,13 @@
-import { ALL_PRODUCTS, SINGLE_PRODUCT } from "#/constants/query-keys.constants";
+import { queryOptions, infiniteQueryOptions } from "@tanstack/react-query";
+
+import {
+  ALL_PRODUCTS,
+  INFINITE_PRODUCTS,
+  SINGLE_PRODUCT,
+} from "#/constants/query-keys.constants";
+import type { AddProductInput } from "#/schemas/product.schema";
 import type { Pagination } from "#/types/api.types";
 import type { Product, ProductsResponse } from "#/types/product.types";
-import { queryOptions, infiniteQueryOptions } from "@tanstack/react-query";
 
 export function useProductByIdQueryOptions(id: number) {
   return queryOptions({
@@ -25,7 +31,7 @@ export function useProductsQueryOptions(pagination?: Pagination) {
 
 export function useInfiniteProductsQueryOption() {
   return infiniteQueryOptions({
-    queryKey: ["infinite-products"],
+    queryKey: [INFINITE_PRODUCTS],
 
     queryFn: ({ pageParam }) =>
       getProducts({
@@ -60,15 +66,12 @@ async function getProducts(pagination?: Pagination): Promise<ProductsResponse> {
   return await response.json();
 }
 
-export async function addProduct() {
+export async function addProduct(data: AddProductInput) {
   const response = await fetch("https://dummyjson.com/products/add", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      title: "BMW Pencil",
-    }),
+    body: JSON.stringify(data),
   });
-  console.warn(response);
   if (!response.ok) throw new Error("Failed to create product");
   return await response.json();
 }

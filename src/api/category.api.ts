@@ -1,9 +1,11 @@
-import type { ProductsResponse } from "#/types/product.types";
 import { queryOptions } from "@tanstack/react-query";
+
+import type { ProductsResponse } from "#/types/product.types";
+import { ALL_PRODUCTS } from "#/constants/query-keys.constants";
 
 export function useProductsByCategoryQueryOptions(category: string) {
   return queryOptions({
-    queryKey: ["products", { category }],
+    queryKey: [ALL_PRODUCTS, { category }],
     queryFn: () => getProductsByCategory(category),
   });
 }

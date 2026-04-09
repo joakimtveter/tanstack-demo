@@ -1,8 +1,10 @@
+import { createFileRoute } from "@tanstack/react-router";
+import z from "zod";
+
+import { useProductsQueryOptions } from "#/api/products.api";
 import { useProducts } from "#/api/useApi";
 import Pagination from "#/components/pagination";
 import ProductList from "#/components/product-list";
-import { createFileRoute } from "@tanstack/react-router";
-import z from "zod";
 
 const productSearchSchema = z.object({
   page: z.number().default(1),
@@ -12,6 +14,17 @@ const productSearchSchema = z.object({
 export const Route = createFileRoute("/products/")({
   component: RouteComponent,
   validateSearch: productSearchSchema,
+  head: () => ({
+    meta: [{ title: "Paginated query example | Tanstack Query Demo" }],
+  }),
+  loaderDeps: ({ search: { page, pageSize } }) => ({ page, pageSize }),
+  loader: ({ context: { queryClient }, deps: { page, pageSize } }) =>
+    queryClient.ensureQueryData(
+      useProductsQueryOptions({
+        limit: pageSize,
+        skip: (page - 1) * pageSize,
+      }),
+    ),
 });
 
 function RouteComponent() {
@@ -22,14 +35,10 @@ function RouteComponent() {
   });
 
   return (
-    <main className="page-wrap px-4 pb-8 pt-14">
-      <h1 className="text-4xl font-bold text-gray-800">Paginated Store page</h1>
+    <main className="page-wrap px-4 pt-14 pb-8">
+      <h1 className="mb-6 text-4xl font-bold">Paginated Store page</h1>
       <ProductList products={data?.products ?? []} />
-      <Pagination
-        currentPage={page}
-        total={data?.total ?? 1}
-        limit={pageSize}
-      />
+      <Pagination currentPage={page} total={data?.total ?? 1} limit={pageSize} />
     </main>
   );
 }
