@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-import { useInfinateProducts } from "#/api/useApi";
+import { useInfiniteProducts } from "#/api/useApi";
 import ProductList from "#/components/product-list";
 import { useInfiniteScroll } from "#/hooks/useInfiniteScroll";
 
@@ -13,7 +13,7 @@ export const Route = createFileRoute("/scroll")({
 
 function RouteComponent() {
   const { data, error, fetchNextPage, hasNextPage, isFetchingNextPage, status } =
-    useInfinateProducts();
+    useInfiniteProducts();
 
   const loadMoreRef = useInfiniteScroll({
     hasNextPage,

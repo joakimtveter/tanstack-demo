@@ -23,7 +23,7 @@ export function useProducts(pagination?: Pagination) {
   return useQuery(useProductsQueryOptions(pagination));
 }
 
-export function useInfinateProducts() {
+export function useInfiniteProducts() {
   return useInfiniteQuery(useInfiniteProductsQueryOption());
 }
 

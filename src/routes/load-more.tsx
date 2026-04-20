@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-import { useInfinateProducts } from "#/api/useApi";
+import { useInfiniteProducts } from "#/api/useApi";
 import ProductList from "#/components/product-list";
 import { Button } from "#/components/ui/button";
 import { Spinner } from "#/components/ui/spinner";
@@ -14,7 +14,7 @@ export const Route = createFileRoute("/load-more")({
 
 function RouteComponent() {
   const { data, error, fetchNextPage, hasNextPage, isFetching, isFetchingNextPage, status } =
-    useInfinateProducts();
+    useInfiniteProducts();
 
   if (status === "pending") return <div>Loading ...</div>;
   if (status === "error") return <div>{JSON.stringify(error)}</div>;
