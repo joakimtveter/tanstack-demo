@@ -9,17 +9,17 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as ScrollRouteImport } from './routes/scroll'
-import { Route as LoadMoreRouteImport } from './routes/load-more'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as ProductsIndexRouteImport } from './routes/products/index'
-import { Route as ProductsAddRouteImport } from './routes/products/add'
-import { Route as ProductsProductIdRouteImport } from './routes/products/$productId'
+import { Route as LoadMoreRouteImport } from './routes/load-more'
+import { Route as ScrollRouteImport } from './routes/scroll'
 import { Route as CategoryCategorySlugRouteImport } from './routes/category/$categorySlug'
+import { Route as ProductsIndexRouteImport } from './routes/products/index'
+import { Route as ProductsProductIdRouteImport } from './routes/products/$productId'
+import { Route as ProductsAddRouteImport } from './routes/products/add'
 
-const ScrollRoute = ScrollRouteImport.update({
-  id: '/scroll',
-  path: '/scroll',
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LoadMoreRoute = LoadMoreRouteImport.update({
@@ -27,9 +27,14 @@ const LoadMoreRoute = LoadMoreRouteImport.update({
   path: '/load-more',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+const ScrollRoute = ScrollRouteImport.update({
+  id: '/scroll',
+  path: '/scroll',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CategoryCategorySlugRoute = CategoryCategorySlugRouteImport.update({
+  id: '/category/$categorySlug',
+  path: '/category/$categorySlug',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProductsIndexRoute = ProductsIndexRouteImport.update({
@@ -37,19 +42,14 @@ const ProductsIndexRoute = ProductsIndexRouteImport.update({
   path: '/products/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ProductsAddRoute = ProductsAddRouteImport.update({
-  id: '/products/add',
-  path: '/products/add',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const ProductsProductIdRoute = ProductsProductIdRouteImport.update({
   id: '/products/$productId',
   path: '/products/$productId',
   getParentRoute: () => rootRouteImport,
 } as any)
-const CategoryCategorySlugRoute = CategoryCategorySlugRouteImport.update({
-  id: '/category/$categorySlug',
-  path: '/category/$categorySlug',
+const ProductsAddRoute = ProductsAddRouteImport.update({
+  id: '/products/add',
+  path: '/products/add',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -123,11 +123,11 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/scroll': {
-      id: '/scroll'
-      path: '/scroll'
-      fullPath: '/scroll'
-      preLoaderRoute: typeof ScrollRouteImport
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/load-more': {
@@ -137,11 +137,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LoadMoreRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+    '/scroll': {
+      id: '/scroll'
+      path: '/scroll'
+      fullPath: '/scroll'
+      preLoaderRoute: typeof ScrollRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/category/$categorySlug': {
+      id: '/category/$categorySlug'
+      path: '/category/$categorySlug'
+      fullPath: '/category/$categorySlug'
+      preLoaderRoute: typeof CategoryCategorySlugRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/products/': {
@@ -151,13 +158,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProductsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/products/add': {
-      id: '/products/add'
-      path: '/products/add'
-      fullPath: '/products/add'
-      preLoaderRoute: typeof ProductsAddRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/products/$productId': {
       id: '/products/$productId'
       path: '/products/$productId'
@@ -165,11 +165,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProductsProductIdRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/category/$categorySlug': {
-      id: '/category/$categorySlug'
-      path: '/category/$categorySlug'
-      fullPath: '/category/$categorySlug'
-      preLoaderRoute: typeof CategoryCategorySlugRouteImport
+    '/products/add': {
+      id: '/products/add'
+      path: '/products/add'
+      fullPath: '/products/add'
+      preLoaderRoute: typeof ProductsAddRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
